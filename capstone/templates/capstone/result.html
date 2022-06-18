@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Result Page</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+            * {
+                font-family: "Roboto";
+            }
+
+            body {
+                background-color: #F5F5F5;
+            }
+
+            form {
+                background-color: #FFFFFF;
+                padding: 25px;
+            }
+
+            table {
+                width: 100%;
+                text-align: center;
+                margin-top: 25px;
+                padding: 25px;
+                background-color: #FFFFFF;
+            }
+
+            table tr td {
+                padding-top: 15px;
+            }
+        </style>
+    </head>
+    <body style="text-align:center">
+        <div id="resultBlock" style="text-align:center">
+        <h4>결과</h4>
+        </div>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>PresentWord</th>
+                <th>LipNetText</th>
+                <th>LipNetResult</th>
+                <th>sttText</th>
+                <th>sttResult</th>
+                <th>Your Video</th>
+            </tr>
+
+            <tr>
+                <td>{{ results.id }}</td>
+                <td>{{ results.presentWord }}</td>
+                <td>{{ results.LipNetAnswer }}</td>
+                <td>{{ results.LipNetResult }}</td>
+                <td>{{ results.sttAnswer }}</td>
+                <td>{{ results.sttResult }}</td>
+                <td>
+                    <video controls width="150">
+                        <source src="{{ document.uploadedFile.url }}" type="video/mp4">
+                    </video>
+                </td>
+            </tr>
+        </table>
+
+
+    <a href="{% url 'index' %}"
+               class="btn btn-sm btn-outline-secondary">홈으로</a>
+    &nbsp; | &nbsp;
+    <a href="{% url 'capstoneMain' %}"
+               class="btn btn-sm btn-outline-secondary">다시하기</a>
+    </body>
+</html>

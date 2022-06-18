@@ -1,0 +1,110 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="shortcut icon" href="#">
+    </head>
+    <body style="text-align:center">
+
+        <div id="rand_word_container" >
+<!--            <img id="wordImgId" src="../../static/wordImage/empty.jpg" alt="제시어" height="300">-->
+            <img id="wordImgId" src="../../static/wordImage/{{word}}.jpg" alt="제시어" height="300">
+<!--            mysite/capstone/static/wordImage 에 이미지 추가 -->
+
+
+            <br>
+            |
+            {{word}}
+<!--            <span class="randomWord">제시단어</span>-->
+            |
+            <br>
+<!--            <button id="randwordbtn" onclick="wrandom()">단어제시</button>-->
+            <br>
+            <form action="{% url 'capstone:uploadAnalyze' word %}" method="POST" enctype="multipart/form-data">
+            <input type="file" name="uploadedFile">
+            {% csrf_token %}
+            <input type="submit" value="실행하기" id="Upload and submit">
+            </form>
+        <button onClick="window.location.reload()">다른 단어 보기</button>
+        </div>
+        <div class="camContainer">
+            <code v-if="device">{{ device.label }}</code>
+    <!--          <web-cam ref="webcam"-->
+    <!--                   :device-id="deviceId"-->
+    <!--                   width="100%"-->
+    <!--                   @started="onStarted"-->
+    <!--                   @stopped="onStopped"-->
+    <!--                   @error="onError"-->
+    <!--                   @cameras="onCameras"-->
+    <!--                   @camera-change="onCameraChange" />-->
+    <!--            <select v-model="camera">-->
+    <!--              <option>&#45;&#45; Select Device &#45;&#45;</option>-->
+    <!--              <option v-for="device in devices"-->
+    <!--                      :key="device.deviceId"-->
+    <!--                      :value="device.deviceId">{{ device.label }}</option>-->
+    <!--            </select>-->
+    <!--            <button type="button"-->
+    <!--                    class="btn btn-primary"-->
+    <!--                    @click="onCapture">Capture Photo</button>-->
+    <!--            <button type="button"-->
+    <!--                    class="btn btn-success"-->
+    <!--                    @click="onStart">Start Camera</button>-->
+    <!--            <button type="button"-->
+    <!--                    class="btn btn-danger"-->
+    <!--                    @click="onStop">Stop Camera</button>-->
+    <!--        <h2>Captured Image</h2>-->
+    <!--        <figure class="figure">-->
+    <!--          <img :src="img" class="img-responsive" >-->
+    <!--        </figure>-->
+        </div>
+
+        <br>
+        <br>
+
+        <a style="display:none" href="{% url 'capstone:show_result' word  %}"
+                   class="btn btn-sm btn-outline-secondary">show_result</a>
+    </body>
+
+</html>
+
+<script>
+
+    wordList = [
+        '귤',
+        '포도',
+        '사과',
+        '자동차',
+        '버스',
+        '옷',
+        '바지',
+        '모자',
+        '바다',
+        '고래',
+        '상어',
+        '호랑이',
+    
+    ];
+
+    WORDS = wordList.length;
+    console.log(WORDS)
+
+    function wrandom() {
+        const randnum = Math.floor(Math.random() * WORDS); // 0 <= ran <= 단어개수
+        randword = wordList[randnum];
+        let x = document.getElementsByClassName("randomWord")[0];
+        x.innerText=randword;
+
+
+        console.log("word random changed!")
+
+        //image change
+        imagepath = "../../static/wordImage/" + randword + ".jpg";
+
+        document.getElementById("wordImgId").src = imagepath;
+    }
+</script>
