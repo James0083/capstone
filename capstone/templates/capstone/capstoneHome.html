@@ -8,14 +8,69 @@
     <title>HomeCapstone</title>
 </head>
 <body style="text-align:center">
-    <div class="Fhome">
+    <div class="Fhome" id="Fhome">
         <h1>Fixpeech</h1>
-        <h3>아동 한국어 발음 교정</h3>
+        <p style="">
+            아동 한국어 발음 교정
+        </p>
         <br>
-
-        <a href="{% url 'capstoneMain' %}"
-               class="btn btn-sm btn-outline-secondary">시작하기</a>
+        <img id="wordImgId" src="../../static/책읽기 일러스트_capstoneHome.jpg" alt="제시어" height="300">
+        <br>
+        <a id="startBtn" href="{% url 'capstoneMain' %}"
+               class="btn btn-sm btn-outline-secondary">시작하기 &rArr;</a>
 
     </div>
 </body>
 </html>
+<style>
+    #Fhome{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    h1{
+      border: 0px solid rgba(100, 100, 100, 1);
+      border-radius: 10px;
+
+      transform: translate(0px, 0px);
+      text-shadow: 6px 3px 3px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+
+      font: normal bolder 40px/1 "Souci Sans";
+      letter-spacing: 5px;
+      color: rgba(255, 194, 51, 1)
+    }
+
+    p{
+        border: 0px solid rgba(100, 100, 100, 1);
+        border-radius: 7px;
+        transform: translate(0px, 0px);
+        text-align: center;
+        width: 250px;
+
+        font: normal "Souci Sans";
+        background: rgba(255, 194, 51, 1);
+
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -100%);
+    }
+    #startBtn{
+        border: 0px solid rgba(100, 100, 100, 1);
+        border-radius: 3px;
+        padding: 5px;
+
+        transform: translate(0px, 0px);
+        text-align: center;
+        width: 50px;
+
+        font: normal "Souci Sans";
+        background: rgba(255, 194, 51, 1);
+
+        text-decoration-line: none;
+    }
+
+
+</style>

@@ -6,63 +6,54 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Result Page</title>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-            * {
-                font-family: "Roboto";
-            }
-
-            body {
-                background-color: #F5F5F5;
-            }
-
-            form {
-                background-color: #FFFFFF;
-                padding: 25px;
-            }
-
-            table {
-                width: 100%;
-                text-align: center;
-                margin-top: 25px;
-                padding: 25px;
-                background-color: #FFFFFF;
-            }
-
-            table tr td {
-                padding-top: 15px;
-            }
-        </style>
     </head>
     <body style="text-align:center">
         <div id="resultBlock" style="text-align:center">
-        <h4>결과</h4>
+            <h1>Fixpeech</h1>
         </div>
 
         <table>
+            <caption>분석결과</caption>
+<!--            <tr>-->
+<!--                <th>ID</th>-->
+<!--                <th>PresentWord</th>-->
+<!--                <th>LipNetText</th>-->
+<!--                <th>LipNetResult</th>-->
+<!--                <th>sttText</th>-->
+<!--                <th>sttResult</th>-->
+<!--                <th>Your Video</th>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>{{ results.id }}</td>-->
+<!--                <td>{{ results.presentWord }}</td>-->
+<!--                <td>{{ results.LipNetAnswer }}</td>-->
+<!--                <td>{{ results.LipNetResult }}</td>-->
+<!--                <td>{{ results.sttAnswer }}</td>-->
+<!--                <td>{{ results.sttResult }}</td>-->
+<!--                <td>-->
+<!--                    <video controls width="150">-->
+<!--                        <source src="{{ document.uploadedFile.url }}" type="video/mp4">-->
+<!--                    </video>-->
+<!--                </td>-->
+<!--            </tr>-->
             <tr>
-                <th>ID</th>
-                <th>PresentWord</th>
-                <th>LipNetText</th>
-                <th>LipNetResult</th>
-                <th>sttText</th>
-                <th>sttResult</th>
-                <th>Your Video</th>
-            </tr>
-
-            <tr>
-                <td>{{ results.id }}</td>
-                <td>{{ results.presentWord }}</td>
-                <td>{{ results.LipNetAnswer }}</td>
-                <td>{{ results.LipNetResult }}</td>
-                <td>{{ results.sttAnswer }}</td>
-                <td>{{ results.sttResult }}</td>
-                <td>
+                <th scope="row">제시된 단어</th>
+                <td colspan="2">{{ results.presentWord }}</td>
+                <td rowspan="3">
                     <video controls width="150">
                         <source src="{{ document.uploadedFile.url }}" type="video/mp4">
                     </video>
                 </td>
+            </tr>
+            <tr>
+                <th scope="row">LipNet 결과</th>
+                <td>{{ results.LipNetAnswer }}</td>
+                <td>{{ results.LipNetResult }}</td>
+            </tr>
+            <tr>
+                <th scope="row">STT 결과</th>
+                <td>{{ results.sttAnswer }}</td>
+                <td>{{ results.sttResult }}</td>
             </tr>
         </table>
 
@@ -74,3 +65,68 @@
                class="btn btn-sm btn-outline-secondary">다시하기</a>
     </body>
 </html>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+    * {
+        font-family: "Roboto";
+    }
+
+    body {
+        background-color: #FFFFFF;
+    }
+
+    form {
+        background-color: #FFFFFF;
+        padding: 25px;
+    }
+
+    a{
+        border: 0px solid rgba(100, 100, 100, 1);
+        border-radius: 3px;
+        padding: 5px;
+
+        transform: translate(0px, 0px);
+        text-align: center;
+        width: 50px;
+
+        font: normal "Souci Sans";
+        background: rgba(255, 194, 51, 1);
+
+        text-decoration-line: none;
+    }
+    h1{
+      border: 0px solid rgba(100, 100, 100, 1);
+      border-radius: 10px;
+
+      transform: translate(0px, 0px);
+      text-shadow: 6px 3px 3px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+
+      font: normal bolder 40px/1 "Souci Sans";
+      letter-spacing: 5px;
+      color: rgba(255, 194, 51, 1)
+    }
+
+    table {
+        width: 100%;
+        text-align: center;
+        margin-top: 25px;
+        padding: 25px;
+        background-color: #FFFFFF;
+    }
+
+    table tr td {
+        padding-top: 10px;
+    }
+
+    th{
+        background-color: rgba(255, 194, 51, 1);
+    }
+    td{
+        background-color: #F6F6F6;
+        font-size: 14pt;
+        font-weight: bold;
+    }
+</style>

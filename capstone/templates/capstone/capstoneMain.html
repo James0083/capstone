@@ -9,8 +9,8 @@
         <title>Document</title>
         <link rel="shortcut icon" href="#">
     </head>
-    <body style="text-align:center">
-
+    <body id="bodyId" style="text-align:center">
+        <h1>Fixpeech</h1>
         <div id="rand_word_container" >
 <!--            <img id="wordImgId" src="../../static/wordImage/empty.jpg" alt="제시어" height="300">-->
             <img id="wordImgId" src="../../static/wordImage/{{word}}.jpg" alt="제시어" height="300">
@@ -18,19 +18,26 @@
 
 
             <br>
-            |
-            {{word}}
-<!--            <span class="randomWord">제시단어</span>-->
-            |
+            <p id="ranWord">
+                |
+                {{word}}
+    <!--            <span class="randomWord">제시단어</span>-->
+                |
+            </p>
             <br>
 <!--            <button id="randwordbtn" onclick="wrandom()">단어제시</button>-->
             <br>
             <form action="{% url 'capstone:uploadAnalyze' word %}" method="POST" enctype="multipart/form-data">
-            <input type="file" name="uploadedFile">
-            {% csrf_token %}
-            <input type="submit" value="실행하기" id="Upload and submit">
+                <label id="inputFileLabel" className="input-file-button" for="inputFile">
+                  동영상 업로드
+                </label>
+                <input id="inputFile" type="file" name="uploadedFile" style="display:none">
+                {% csrf_token %}
+                <br>
+                <input id="submitUpload" type="submit" value="실행하기" id="Upload and submit">
             </form>
-        <button onClick="window.location.reload()">다른 단어 보기</button>
+            <br>
+            <button id="changeWordBtn" onClick="window.location.reload()">다른 단어 보기</button>
         </div>
         <div class="camContainer">
             <code v-if="device">{{ device.label }}</code>
@@ -108,3 +115,54 @@
         document.getElementById("wordImgId").src = imagepath;
     }
 </script>
+
+<style>
+    h1{
+        border: 0px solid rgba(100, 100, 100, 1);
+        border-radius: 10px;
+
+        transform: translate(0px, 0px);
+        text-shadow: 6px 3px 3px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+
+        font: normal bolder 40px/1 "Souci Sans";
+        letter-spacing: 5px;
+        color: rgba(255, 194, 51, 1)
+    }
+    #bodyId{}
+    #rand_word_container{}
+    #wordImgId{
+
+    }
+    #ranWord{
+
+    }
+    #inputFileLabel{
+        padding: 6px 25px;
+        margin: 0px;
+        background-color:rgba(255, 194, 51, 1);
+        border-radius: 4px;
+        color: white;
+        cursor: pointer;
+
+    }
+    #submitUpload{
+        background-color:rgba(255, 194, 51, 1);
+        border: none;
+        color: white;
+        padding: 8px 32px;
+        text-decoration: none;
+        margin: 10px;
+        cursor: pointer;
+    }
+    #changeWordBtn{
+        background-color:skyblue;
+        border: none;
+        color: white;
+        padding: 8px 32px;
+        text-decoration: none;
+        margin: 10px;
+        cursor: pointer;
+    }
+</style>
