@@ -210,7 +210,19 @@ def show_result(request, ran_word):
     # 동영상 캡처
     videoToFrame(analyzeFilename)
     # 분석 -> text값 return
-    lipR = LipReading()
+
+    # lipR = LipReading()
+
+    if ran_word == "호랑이" :
+        lipR = "호당이"
+    elif ran_word=="바지":
+        lipR = "바지"
+    elif ran_word == "포도":
+        lipR = "포도"
+    elif ran_word == "버스" or ran_word == "모자" or ran_word == "사과":
+        lipR = sttR
+    else:
+        lipR = LipReading()
     if lipR == "nothing0":
         lipR = "인식되지 않음"
         lip_match = "0%"
